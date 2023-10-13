@@ -24,8 +24,6 @@ pipeline {
                       sh 'docker push -t hungln0609/springboot'
                   }
             }
-
-
         }
     }
 }
