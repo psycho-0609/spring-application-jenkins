@@ -20,7 +20,7 @@ pipeline {
 
         stage('Packing/Pushing image'){
             steps{
-                  withDockerRegistry(credentialsId: 'dockerhub', url : 'https://index.docker.io/v1/'){
+                  withDockerRegistry(credentialsId: 'dockerhub', url : ''){
                       sh 'docker build -t hungln0609/springboot'
                       sh 'docker push -t hungln0609/springboot'
                   }
