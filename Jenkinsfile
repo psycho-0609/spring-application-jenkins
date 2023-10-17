@@ -11,12 +11,12 @@ pipeline {
             }
         }
 
-        stage('build maven'){
-            steps{
-                sh 'java --version && mvn --version'
-                sh 'mvn clean package -Dmaven.test.failure.ignore=true'
-            }
-        }
+//         stage('build maven'){
+//             steps{
+//                 sh 'java --version && mvn --version'
+//                 sh 'mvn clean package -Dmaven.test.failure.ignore=true'
+//             }
+//         }
 
         stage('Packing/Pushing image'){
             steps{
