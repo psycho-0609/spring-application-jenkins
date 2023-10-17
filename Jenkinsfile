@@ -5,11 +5,11 @@ pipeline {
         dockerTool 'docker'
     }
     stages {
-//         stage('Clone') {
-//             steps {
-//                 git branch: 'main', credentialsId: 'jenkin_token', url: 'https://github.com/psycho-0609/test-jenkin.git'
-//             }
-//         }
+        stage('Clone') {
+            steps {
+                git branch: 'main', credentialsId: 'jenkin_token', url: 'https://github.com/psycho-0609/test-jenkin.git'
+            }
+        }
 
         stage('build maven'){
             steps{
