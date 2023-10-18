@@ -28,7 +28,7 @@ pipeline {
 
                         sh 'docker build -t springboot:latest .'
                           sh 'docker tag springboot hungln0609/springboot:latest'
-                        sh 'docker tag springboot hungln0609/springboot:$BUILD_NUMBER'
+//                         sh 'docker tag springboot hungln0609/springboot:$BUILD_NUMBER'
 
                   }
                 }
@@ -36,8 +36,8 @@ pipeline {
         stage('Packing/Pushing image'){
             steps{
                   withDockerRegistry([credentialsId: 'dockerhub', url : '']){
-                      sh 'docker build -t hungln0609/springboot'
-                      sh 'docker push -t hungln0609/springboot'
+//                       sh 'docker build -t hungln0609/springboot'
+                      sh 'docker push -t hungln0609/springboot:latest'
                   }
             }
         }
