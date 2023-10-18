@@ -18,11 +18,11 @@ pipeline {
                 sh 'docker --version'
             }
         }
-        stage('run application'){
-            steps{
-                sh 'java -jar target/spring-application-0.0.1-SNAPSHOT.jar'
-            }
-        }
+//         stage('run application'){
+//             steps{
+//                 sh 'java -jar target/spring-application-0.0.1-SNAPSHOT.jar'
+//             }
+//         }
 
 //         stage('Packing/Pushing image'){
 //             steps{
