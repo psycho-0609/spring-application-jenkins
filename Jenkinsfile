@@ -11,20 +11,25 @@ pipeline {
             }
         }
 
-//         stage('build maven'){
-//             steps{
-//                 sh 'java --version && mvn --version'
-//                 sh 'mvn clean package -Dmaven.test.failure.ignore=true'
-//             }
-//         }
-
-        stage('Packing/Pushing image'){
+        stage('build maven'){
             steps{
-                  withDockerRegistry(credentialsId: 'dockerhub', url : ''){
-                      sh 'docker build -t hungln0609/springboot'
-                      sh 'docker push -t hungln0609/springboot'
-                  }
+                sh 'java --version && mvn --version'
+                sh 'mvn clean package -Dmaven.test.failure.ignore=true'
             }
         }
+        stage('run application'){
+            steps{
+                sh 'java -jar target/spring-application-0.0.1-SNAPSHOT.jar'
+            }
+        }
+
+//         stage('Packing/Pushing image'){
+//             steps{
+//                   withDockerRegistry(credentialsId: 'dockerhub', url : ''){
+//                       sh 'docker build -t hungln0609/springboot'
+//                       sh 'docker push -t hungln0609/springboot'
+//                   }
+//             }
+//         }
     }
 }
