@@ -1,3 +1,4 @@
+def dockerImageNginx
 pipeline {
     agent any
     tools{
@@ -24,13 +25,20 @@ pipeline {
 //             }
 //         }
 
-        stage('Packing/Pushing image'){
-            steps{
-                  withDockerRegistry(credentialsId: 'dockerhub', url : ''){
-                      sh 'docker build -t hungln0609/springboot'
-                      sh 'docker push -t hungln0609/springboot'
-                  }
+        stage('build image'){
+                    steps{
+                         dockerImageNginx = docker.build registrynginx + ":$BUILD_NUMBER", "-f dockerfilenginx ."
+                    }
+                }
+
+        stage('Push Image to registry') {
+          steps{
+            script{
+              withDockerRegistry(credentialsId: 'dockerhub', url: '') {
+                dockerImageNginx.push()
+              }
             }
+          }
         }
     }
 }
