@@ -16,6 +16,7 @@ pipeline {
                 sh 'java --version && mvn --version'
                 sh 'mvn clean package -Dmaven.test.failure.ignore=true'
                 sh 'docker --version'
+                sh 'ls'
             }
         }
 //         stage('run application'){
