@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools{
         maven 'maven'
-        dockerTool 'docker'
+        //dockerTool 'docker'
     }
     stages {
 //         stage('Clone') {
