@@ -24,22 +24,25 @@ pipeline {
 //                 sh 'java -jar target/spring-application-0.0.1-SNAPSHOT.jar'
 //             }
 //         }
-          stage('Docker Build and Tag') {
-                   steps {
+//           stage('Docker Build and Tag') {
+//                    steps {
 
-                        sh 'docker build -t springboot:latest .'
-                          sh 'docker tag springboot hungln0609/springboot:latest'
-//                         sh 'docker tag springboot hungln0609/springboot:$BUILD_NUMBER'
+//                         sh 'docker build -t springboot:latest .'
+//                           sh 'docker tag springboot hungln0609/springboot:latest'
+// //                         sh 'docker tag springboot hungln0609/springboot:$BUILD_NUMBER'
 
-                  }
-                }
+//                   }
+//                 }
 
         stage('Packing/Pushing image'){
             steps{
-                  withDockerRegistry([credentialsId: 'dockerhub', url : '']){
-//                       sh 'docker build -t hungln0609/springboot'
+                script{
+                    withDockerRegistry([credentialsId: 'dockerhub', url : '']){
+                      sh 'docker build -t hungln0609/springboot'
                       sh 'docker push -t hungln0609/springboot:latest'
                   }
+                }
+                  
             }
         }
     }
